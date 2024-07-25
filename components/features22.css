@@ -1,0 +1,101 @@
+.features22-layout349 {
+  gap: var(--dl-space-space-twounits);
+  display: flex;
+  overflow: hidden;
+  position: relative;
+  align-items: center;
+  flex-direction: column;
+}
+.features22-max-width {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+}
+.features22-container {
+  gap: var(--dl-space-space-halfunit);
+  border: 2px dashed rgba(120, 120, 120, 0.4);
+  display: flex;
+  max-width: 600px;
+  align-items: center;
+  margin-bottom: var(--dl-space-space-fourunits);
+  flex-direction: column;
+}
+.features22-container1 {
+  width: 100%;
+}
+.features22-card {
+  color: var(--dl-color-theme-neutral-light);
+  height: 359px;
+  display: flex;
+  align-self: flex-start;
+  align-items: center;
+  flex-direction: column;
+  justify-content: center;
+  background-color: #210f66;
+}
+.features22-card1 {
+  color: var(--dl-color-theme-neutral-light);
+  height: auto;
+  display: flex;
+  align-self: flex-start;
+  align-items: center;
+  flex-direction: column;
+  justify-content: center;
+  background-color: #210f66;
+}
+.features22-card2 {
+  color: var(--dl-color-theme-neutral-light);
+  height: 363px;
+  display: flex;
+  align-self: flex-start;
+  align-items: center;
+  flex-direction: column;
+  justify-content: center;
+  background-color: #210f66;
+}
+.features22-text07 {
+  display: inline-block;
+  text-align: center;
+}
+.features22-text24 {
+  display: inline-block;
+  text-align: center;
+}
+.features22-text38 {
+  display: inline-block;
+}
+.features22-text39 {
+  display: inline-block;
+  text-align: center;
+}
+.features22-text56 {
+  display: inline-block;
+}
+.features22-text57 {
+  display: inline-block;
+}
+.features22-text58 {
+  display: inline-block;
+}
+@media(max-width: 991px) {
+  .features22-max-width {
+    flex-direction: column;
+  }
+  .features22-container {
+    margin-bottom: var(--dl-space-space-threeunits);
+  }
+}
+@media(max-width: 767px) {
+  .features22-container {
+    margin-bottom: var(--dl-space-space-oneandhalfunits);
+  }
+  .features22-card {
+    width: 100%;
+  }
+  .features22-card1 {
+    width: 100%;
+  }
+  .features22-card2 {
+    width: 100%;
+  }
+}
