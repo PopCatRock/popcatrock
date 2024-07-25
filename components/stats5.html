@@ -7,7 +7,7 @@
     <meta property="twitter:card" content="summary_large_image" />
 
     <style data-tag="reset-style-sheet">
-      html {  line-height: 1.15;}body {  margin: 0;}* {  box-sizing: border-box;  border-width: 0;  border-style: solid;}p,li,ul,pre,div,h1,h2,h3,h4,h5,h6,figure,blockquote,figcaption {  margin: 0;  padding: 0;}button {  background-color: transparent;}button,input,optgroup,select,textarea {  font-family: inherit;  font-size: 100%;  line-height: 1.15;  margin: 0;}button,select {  text-transform: none;}button,[type="button"],[type="reset"],[type="submit"] {  -webkit-appearance: button;}button::-moz-focus-inner,[type="button"]::-moz-focus-inner,[type="reset"]::-moz-focus-inner,[type="submit"]::-moz-focus-inner {  border-style: none;  padding: 0;}button:-moz-focus,[type="button"]:-moz-focus,[type="reset"]:-moz-focus,[type="submit"]:-moz-focus {  outline: 1px dotted ButtonText;}a {  color: inherit;  text-decoration: inherit;}input {  padding: 2px 4px;}img {  display: block;}html { scroll-behavior: smooth  }
+      html {  line-height: 1.15;}body {  margin: 0;}* {  box-sizing: border-box;  border-width: 0;  border-style: solid;}p,li,ul,pre,div,h1,h2,h3,h4,h5,h6,figure,blockquote,figcaption {  margin: 0;  padding: 0;}button {  background-color: transparent;}button,input,optgroup,select,textarea {  font-family: inherit;  font-size: 100%;  line-height: 1.15;  margin: 0;}button,select {  text-transform: none;}button,[type="button"],[type="reset"],[type="submit"] {  -webkit-appearance: button;}button::-moz-focus-inner,[type="button"]::-moz-focus-inner,[type="reset"]::-moz-focus-inner,[type="submit"]::-moz-focus-inner {  border-style: none;  padding: 0;}button:-moz-focus,[type="button"]:-moz-focus,[type="reset"],[type="submit"]:-moz-focus {  outline: 1px dotted ButtonText;}a {  color: inherit;  text-decoration: inherit;}input {  padding: 2px 4px;}img {  display: block;}html { scroll-behavior: smooth  }
     </style>
     <style data-tag="default-style-sheet">
       html {
@@ -69,28 +69,28 @@
             <div class="stats5-container3">
               <h2>
                 <fragment>
-                  <span id="market-cap" class="stats5-text8 thq-heading-2"></span>
+                  <span id="market-cap" class="stats5-text8 thq-heading-2">Market Cap: Loading...</span>
                 </fragment>
               </h2>
             </div>
             <div class="stats5-container4">
               <h2>
                 <fragment>
-                  <span id="token-price" class="stats5-text6 thq-heading-2"></span>
+                  <span id="token-price" class="stats5-text6 thq-heading-2">Token Price: Loading...</span>
                 </fragment>
               </h2>
             </div>
             <div class="stats5-container5">
               <h2>
                 <fragment>
-                  <span id="lp-in-dollar" class="stats5-text7 thq-heading-2"></span>
+                  <span id="lp-in-dollar" class="stats5-text7 thq-heading-2">LP in $: Loading...</span>
                 </fragment>
               </h2>
             </div>
             <div class="stats5-container6">
               <h2>
                 <fragment>
-                  <span id="volume" class="stats5-text4 thq-heading-2"></span>
+                  <span id="volume" class="stats5-text4 thq-heading-2">Volume (24h): Loading...</span>
                 </fragment>
               </h2>
             </div>
@@ -108,17 +108,23 @@
           .then(response => response.json())
           .then(data => {
             const tokenData = data.data.attributes;
-            const marketCap = tokenData.market_cap_usd ? tokenData.market_cap_usd : 'N/A';
-            const tokenPrice = tokenData.price_usd ? `$${parseFloat(tokenData.price_usd).toFixed(6)}` : 'N/A';
-            const lpInDollar = tokenData.total_reserve_in_usd ? `$${parseFloat(tokenData.total_reserve_in_usd).toFixed(2)}` : 'N/A';
-            const volume = tokenData.volume_usd.h24 ? `$${parseFloat(tokenData.volume_usd.h24).toFixed(2)}` : 'N/A';
+            const marketCap = tokenData.market_cap_usd !== null ? `$${parseFloat(tokenData.market_cap_usd).toFixed(2)}` : 'N/A';
+            const tokenPrice = tokenData.price_usd !== null ? `$${parseFloat(tokenData.price_usd).toFixed(6)}` : 'N/A';
+            const lpInDollar = tokenData.total_reserve_in_usd !== null ? `$${parseFloat(tokenData.total_reserve_in_usd).toFixed(2)}` : 'N/A';
+            const volume = tokenData.volume_usd.h24 !== null ? `$${parseFloat(tokenData.volume_usd.h24).toFixed(2)}` : 'N/A';
 
             document.getElementById('market-cap').textContent = `Market Cap: ${marketCap}`;
             document.getElementById('token-price').textContent = `Token Price: ${tokenPrice}`;
             document.getElementById('lp-in-dollar').textContent = `LP in $: ${lpInDollar}`;
             document.getElementById('volume').textContent = `Volume (24h): ${volume}`;
           })
-          .catch(error => console.error('Error fetching token data:', error));
+          .catch(error => {
+            console.error('Error fetching token data:', error);
+            document.getElementById('market-cap').textContent = 'Market Cap: Error';
+            document.getElementById('token-price').textContent = 'Token Price: Error';
+            document.getElementById('lp-in-dollar').textContent = 'LP in $: Error';
+            document.getElementById('volume').textContent = 'Volume (24h): Error';
+          });
       });
     </script>
   </body>
