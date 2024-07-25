@@ -445,7 +445,7 @@
             <span class="home-text065 thq-heading-2">
               <span>Price:</span>
               <br />
-              <span id="token-price">$1000</span>
+              <span id="token-price">Loading...</span>
             </span>
           </fragment>
         </h2>
@@ -456,7 +456,7 @@
             <span class="home-text069 thq-heading-2">
               <span>FDV:</span>
               <br />
-              <span id="fdv">$50</span>
+              <span id="fdv">Loading...</span>
             </span>
           </fragment>
         </h2>
@@ -465,9 +465,9 @@
         <h2>
           <fragment>
             <span class="home-text073 thq-heading-2">
-              <span>Holders:</span>
+              <span>Volume:</span>
               <br />
-              <span id="holders">2000</span>
+              <span id="volume">Loading...</span>
             </span>
           </fragment>
         </h2>
@@ -478,7 +478,7 @@
             <span class="home-text077 thq-heading-2">
               <span>LP:</span>
               <br />
-              <span id="lp-in-dollar">$10</span>
+              <span id="lp-in-dollar">Loading...</span>
             </span>
           </fragment>
         </h2>
@@ -502,8 +502,9 @@
         const fdv = tokenData.fdv_usd !== null ? `$${parseFloat(tokenData.fdv_usd).toFixed(2)}` : 'N/A';
         document.getElementById('fdv').textContent = fdv;
 
-        // Update the holders (assuming holders data is not directly available, setting it to a placeholder value)
-        document.getElementById('holders').textContent = 'Data Not Available'; // This needs actual holders data if available
+        // Update the volume
+        const volume = tokenData.volume_usd.h24 !== null ? `$${parseFloat(tokenData.volume_usd.h24).toFixed(2)}` : 'N/A';
+        document.getElementById('volume').textContent = volume;
 
         // Update the LP in dollar
         const lpInDollar = tokenData.total_reserve_in_usd !== null ? `$${parseFloat(tokenData.total_reserve_in_usd).toFixed(2)}` : 'N/A';
@@ -511,10 +512,10 @@
       })
       .catch(error => {
         console.error('Error fetching token data:', error);
-        // In case of error, keep the default text
+        // In case of error, show 'Error' message
         document.getElementById('token-price').textContent = 'Error';
         document.getElementById('fdv').textContent = 'Error';
-        document.getElementById('holders').textContent = 'Error';
+        document.getElementById('volume').textContent = 'Error';
         document.getElementById('lp-in-dollar').textContent = 'Error';
       });
   });
