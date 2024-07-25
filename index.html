@@ -429,63 +429,96 @@
             </div>
           </div>
         </section>
-        <div class="thq-section-padding stats5-root-class-name">
-          <div class="stats5-max-width6 thq-section-max-width">
-            <div class="stats5-container57">
-              <h2 class="home-title">
-                <fragment>
-                  <span class="home-text081 thq-heading-2">PopStats</span>
-                </fragment>
-              </h2>
-            </div>
-            <div class="stats5-container58">
-              <div class="stats5-container59">
-                <h2>
-                  <fragment>
-                    <span class="home-text065 thq-heading-2">
-                      <span>Price:</span>
-                      <br />
-                      <span>$1000</span>
-                    </span>
-                  </fragment>
-                </h2>
-              </div>
-              <div class="stats5-container60">
-                <h2>
-                  <fragment>
-                    <span class="home-text069 thq-heading-2">
-                      <span>FDV:</span>
-                      <br />
-                      <span>$50</span>
-                    </span>
-                  </fragment>
-                </h2>
-              </div>
-              <div class="stats5-container61">
-                <h2>
-                  <fragment>
-                    <span class="home-text073 thq-heading-2">
-                      <span>Holders:</span>
-                      <br />
-                      <span>2000</span>
-                    </span>
-                  </fragment>
-                </h2>
-              </div>
-              <div class="stats5-container62">
-                <h2>
-                  <fragment>
-                    <span class="home-text077 thq-heading-2">
-                      <span>LP:</span>
-                      <br />
-                      <span>$10</span>
-                    </span>
-                  </fragment>
-                </h2>
-              </div>
-            </div>
-          </div>
-        </div>
+       <div class="thq-section-padding stats5-root-class-name">
+  <div class="stats5-max-width6 thq-section-max-width">
+    <div class="stats5-container57">
+      <h2 class="home-title">
+        <fragment>
+          <span class="home-text081 thq-heading-2">PopStats</span>
+        </fragment>
+      </h2>
+    </div>
+    <div class="stats5-container58">
+      <div class="stats5-container59">
+        <h2>
+          <fragment>
+            <span class="home-text065 thq-heading-2">
+              <span>Price:</span>
+              <br />
+              <span id="token-price">$1000</span>
+            </span>
+          </fragment>
+        </h2>
+      </div>
+      <div class="stats5-container60">
+        <h2>
+          <fragment>
+            <span class="home-text069 thq-heading-2">
+              <span>FDV:</span>
+              <br />
+              <span id="fdv">$50</span>
+            </span>
+          </fragment>
+        </h2>
+      </div>
+      <div class="stats5-container61">
+        <h2>
+          <fragment>
+            <span class="home-text073 thq-heading-2">
+              <span>Holders:</span>
+              <br />
+              <span id="holders">2000</span>
+            </span>
+          </fragment>
+        </h2>
+      </div>
+      <div class="stats5-container62">
+        <h2>
+          <fragment>
+            <span class="home-text077 thq-heading-2">
+              <span>LP:</span>
+              <br />
+              <span id="lp-in-dollar">$10</span>
+            </span>
+          </fragment>
+        </h2>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+  document.addEventListener('DOMContentLoaded', function() {
+    fetch('https://api.geckoterminal.com/api/v2/networks/bitrock/tokens/0xdce5726e3bc8e1f574416978279bb0ae62ab3c15')
+      .then(response => response.json())
+      .then(data => {
+        const tokenData = data.data.attributes;
+
+        // Update the price
+        const tokenPrice = tokenData.price_usd !== null ? `$${parseFloat(tokenData.price_usd).toFixed(6)}` : 'N/A';
+        document.getElementById('token-price').textContent = tokenPrice;
+
+        // Update the FDV
+        const fdv = tokenData.fdv_usd !== null ? `$${parseFloat(tokenData.fdv_usd).toFixed(2)}` : 'N/A';
+        document.getElementById('fdv').textContent = fdv;
+
+        // Update the holders (assuming holders data is not directly available, setting it to a placeholder value)
+        document.getElementById('holders').textContent = 'Data Not Available'; // This needs actual holders data if available
+
+        // Update the LP in dollar
+        const lpInDollar = tokenData.total_reserve_in_usd !== null ? `$${parseFloat(tokenData.total_reserve_in_usd).toFixed(2)}` : 'N/A';
+        document.getElementById('lp-in-dollar').textContent = lpInDollar;
+      })
+      .catch(error => {
+        console.error('Error fetching token data:', error);
+        // In case of error, keep the default text
+        document.getElementById('token-price').textContent = 'Error';
+        document.getElementById('fdv').textContent = 'Error';
+        document.getElementById('holders').textContent = 'Error';
+        document.getElementById('lp-in-dollar').textContent = 'Error';
+      });
+  });
+</script>
         <div class="features22-layout349 thq-section-padding">
           <h2>
             <fragment>
