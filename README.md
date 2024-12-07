@@ -1,7 +1,6 @@
 pragma solidity 0.X.X;
 
 /*
-
  /$$$$$$$                      /$$$$$$                                   
 | $$__  $$                    /$$__  $$                                  
 | $$  \ $$ /$$$$$$   /$$$$$$ | $$  \__/ /$$  /$$  /$$  /$$$$$$   /$$$$$$ 
@@ -13,7 +12,6 @@ pragma solidity 0.X.X;
                    | $$                                        | $$      
                    | $$                                        | $$      
                    |__/                                        |__/      
-
  * App:             https://popswap.click
  * Medium:          https://PopCatRock.medium.com
  * Twitter:         https://twitter.com/PopCatRock
